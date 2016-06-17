@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {{ form(form) }}
+
+    <br>
+    <br>
+
+    <table  border="1" style="width:300px" >
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>City</th>
+        </tr>
+        {% for persons in person %}
+        <tr>
+            <td>{{ persons.name }}</td>
+            <td>{{ persons.lastname }}</td>
+            <td>{{ persons.city }}</td>
+            <td><a href="{{ path('supprimer', { 'id' : persons.id }) }}">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

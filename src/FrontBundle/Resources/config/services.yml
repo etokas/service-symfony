@@ -1,0 +1,19 @@
+services:
+    person_form:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments:
+            - person
+            - person_type
+
+
+    person_type:
+        class: FrontBundle\Type\PersonType
+        tags:
+            - { name: form.type, alias: person_type}
+
+    person_handler:
+        class: FrontBundle\Handler\PersonHandler
+        arguments: [@person_form, @request, @doctrine.orm.entity_manager]
+        scope: request
